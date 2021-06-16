@@ -1,7 +1,12 @@
 import React, {createContext, useContext, useEffect, useReducer} from 'react'
+import useLocation from '../hooks'
 
+//* Workflow: get user location, if not available set default to NY? load weather data and display app. there can be a "enter custom location" thing that the user can opt to use, which will retrieve the weather data by zip code instead of coords
+
+//TODO: create interface for below type
 const defaultWeatherData: any = {
-   location: '48073'
+   location: '48073',
+   weatherData: {}
 }
 
 interface WeatherDataState{
@@ -25,6 +30,7 @@ const WeatherDataReducer = (state: WeatherDataState, action: WeatherDataAction):
 }
 
 const WeatherDataProvider: React.FC = ({children}) => {
+    const userLocation = useLocation()
     const weatherDataInitState: WeatherDataState = {
         location: null
     }
@@ -34,9 +40,13 @@ const WeatherDataProvider: React.FC = ({children}) => {
     useEffect(()=>{
         dispatch({
             type: 'SET_LOCATION',
-            value: '48073'
+            value: userLocation()
         })
     }, [])
+
+    
+
+    console.log(userLocation())
 
     return <WeatherDataContext.Provider value={[state, dispatch]}>{children}</WeatherDataContext.Provider>
 
