@@ -1,62 +1,37 @@
 import { useAppData } from '../providers'
+const configData = require('../config.json')
 
 const useApi = (): Function => {
-    const [{ location, coords }, appDispatch] = useAppData()
-    
-    const key = "e84d91c5e881bd2d8192021e937f5fbf"
-    const getData = (type:string) =>{
+	const [{ location, coords }, appDispatch] = useAppData()
 
-        let weather:any
-        let forecast:any
+	const getWeatherData = (type: string): void => {
+		// ['weather', 'forecast']
 
-        if (type === "coords") {
+		let locationIndicator = coords ? 'lat=' + coords.lat + '&lon=' + coords.long : 'zip=' + location
 
-            weather = 'http://api.openweathermap.org/data/2.5/weather?lat=' + coords.lat + '&lon=' + coords.long + '&units=imperial&appid=' + key
+		let apiUrl = 'http://api.openweathermap.org/data/2.5/' + type + '?' + locationIndicator + '&units=imperial&appid=' + configData.apiKey
 
-            forecast = 'http://api.openweathermap.org/data/2.5/forecast?lat=' + coords.lat + '&lon=' + coords.long + '&units=imperial&appid=' + key
+		fetch(apiUrl)
+			.then((response) => {
+				return response.json()
+					.then((data) => {
+						console.log(data)
+						// return data
 
-        } else if (type === "zip") {
-            weather = 'http://api.openweathermap.org/data/2.5/weather?zip=' + location + ',us&units=imperial&appid=' + key
+						appDispatch({
+							type: 'SET_WEATHER',
+							value: data
+						})
+					})
 
-            forecast = 'http://api.openweathermap.org/data/2.5/weather?zip=' + location + ',us&units=imperial&appid=' + key
-        } else {
-            console.log("Call type not specified")
-        }
+			})
+			.catch((error) => {
+				console.error(error)
+			})
 
+	}
 
-        fetch(weather)
-            .then((response) => {
-                // debugger
-                if (response.status === 200) {
-                    return response.json()
-                        .then((data) => {
-                            // debugger
-                            console.log(data)
-                            // setLoaded(true);
-                            // setWeatherData(data);
-                            // setErrorMessage(null)
-                        })
-
-                } else {
-                    // setErrorMessage("This zipcode is invalid.")
-                }
-
-            })
-
-        fetch(forecast)
-            .then((response) => {
-                return response.json()
-                    .then((data) => {
-                        // setLoaded(true);
-                        // setForecastData(data);
-                    })
-            })
-
-
-        return 'data'
-    }
-
-    return getData
+	return getWeatherData
 }
 
 export default useApi

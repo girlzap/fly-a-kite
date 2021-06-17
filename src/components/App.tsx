@@ -1,53 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 
 import { useAppData } from '../providers'
 
-import { useApi } from '../hooks'
+import { useApi, useGeolocation } from '../hooks'
 
-function App() {
+const App = () => {
 
-  const [{ location, coords }, appDispatch] = useAppData()
-  const getData = useApi()
+	const [{ location, coords, weather }] = useAppData()
+	const getWeatherData = useApi()
+	const getCoordinates = useGeolocation()
 
-  const [lat, setLat] = useState<number | null>(null)
-  const [long, setLong] = useState<number | null>(null)
+	useEffect(() => {
+		getCoordinates()
+		//TODO: call in the view when that is set up, change to forecast for that view
+		getWeatherData('weather')
 
-  const setPosition = (position: any) => {
+	}, [])
 
-    setLat(Math.round(position.coords.latitude))
-    setLong(Math.round(position.coords.longitude))
+	return (
+		<div className="App">
+			<header className="App-header">
 
-  }
-
-  const userLocation = () => {
-
-    navigator.geolocation ? navigator.geolocation.getCurrentPosition(setPosition) : console.log('geolocation blocked')
-  }
-  getData('zip')
-  useEffect(()=>{
-    appDispatch({
-      type: 'SET_COORDS',
-      value: { lat, long }
-    })
-    console.log("setting coords from browser")
-  }, [lat, long, appDispatch])
-
-  userLocation()
-
-  //* if coords, use those for api call, if those dont exist use default zip code
-
-  
-  return (
-    <div className="App">
-      <header className="App-header">
-        
-        <p>Location: {location}</p>
-       <p>Coords:  {JSON.stringify(coords)}</p>
-       
-      </header>
-    </div>
-  );
+				<p>Location: {location}</p>
+				<p>Coords LAT:  {coords.lat}</p>
+				<p>Coords LONG:  {coords.long}</p>
+				<p>{JSON.stringify(weather.name)}</p>
+				<img src={'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'} alt="weather icon" />
+			</header>
+		</div>
+	);
 }
 
 export default App;

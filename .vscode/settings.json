@@ -1,0 +1,130 @@
+{
+    "atomKeymap.promptV3Features": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.formatOnPaste": false,
+    "editor.wordWrap": "on",
+    "window.menuBarVisibility": "default",
+    "window.zoomLevel": 0,
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.renderCharacters": false,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorStyle": "line",
+    "editor.fontSize": 14,
+    "editor.mouseWheelZoom": true,
+    "editor.dragAndDrop": false,
+    "editor.tabSize": 4,
+    "json.format.enable": false,
+    "editor.tokenColorCustomizations": {
+        "comments": "#ac678f"
+    },
+    "workbench.colorCustomizations":{
+        "[Atom One Dark]":{
+            "tab.activeForeground": "#ffffff",
+            "tab.activeBackground":"#393a3b",
+            "tab.inactiveForeground":"#cccccc",
+            "tab.inactiveBackground":"#1b1e22",
+            "sideBar.background": "#191919",
+            "panel.background":"#111111",
+            "panelTitle.activeBorder":"#0B6091",
+            "editorBracketMatch.background":"#3D4350",
+            "editorCursor.foreground":"#FFFF00",
+            "editorWarning.foreground":"#ff00ff",
+            "editorInfo.foreground": "#00c3ff"
+        }
+    },
+    "workbench.activityBar.visible": true,
+    "editor.accessibilitySupport": "off",
+    "problems.decorations.enabled": true,
+    "files.autoSave": "off",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Atom One Dark",
+
+    //added 9-21-18
+    "editor.acceptSuggestionOnEnter": "smart",
+    "editor.foldingStrategy": "indentation",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "workbench.settings.editor": "json",
+    // "editor.quickSuggestions": {
+        // "other": false
+    // }
+    "bracketPairColorizer.consecutivePairColors": [
+        "()",
+        "[]",
+        "{}",
+        [
+            "Gold",
+            "DeepPink",
+            "Aquamarine"
+        ],
+        "Red"
+    ],
+    "editor.occurrencesHighlight": false,
+
+    "highlight-matching-tag.styles": {
+        "opening": {
+            "name": {
+                "underline": "steelblue"
+            }
+        }
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "workbench.sideBar.location": "left",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "python.formatting.provider": "black",
+	"workbench.enableExperiments": false,
+    "better-comments.tags": [
+        {
+          "tag": "!",
+          "color": "#FF2D00",
+          "strikethrough": false,
+          "backgroundColor": "rgba(0,0,0,0.3)"
+        },
+        {
+          "tag": "?",
+          "color": "#7ab3e9",
+          "strikethrough": false,
+          "backgroundColor": "rgba(0,0,0,0.3)"
+        },
+        {
+          "tag": "//",
+          "color": "#929292",
+          "strikethrough": true,
+          "backgroundColor": "rgba(0,0,0,0.3)"
+        },
+        {
+          "tag": "todo",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "backgroundColor": "rgba(0,0,0,0.3)"
+        },
+        {
+          "tag": "*",
+          "color": "#b78bdd",
+          "strikethrough": false,
+          "backgroundColor": "rgba(0,0,0,0.3)"
+        }
+    ],
+    "git.enableSmartCommit": true,
+    "eslint.autoFixOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		{ "language": "typescript", "autoFix": true },
+		{ "language": "typescriptreact", "autoFix": true }
+	],
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"git.confirmSync": false,
+	"diffEditor.ignoreTrimWhitespace": false,
+	"update.mode": "none",
+	"editor.formatOnSave": true
+
+}
