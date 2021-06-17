@@ -1,1 +1,1 @@
-export { WeatherDataProvider, useWeatherData, WeatherDataContext} from './WeatherData'
+export { AppDataProvider, useAppData,AppDataContext} from './AppData'

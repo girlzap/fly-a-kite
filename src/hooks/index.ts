@@ -1,1 +1,1 @@
-export { default } from './location'
+export { default as useApi } from './api'
