@@ -7,6 +7,8 @@ interface AppDataState {
 	location: string | null
 	coords: any
 	weather: any
+	forecast: any
+	view: string
 }
 
 interface AppDataAction {
@@ -28,6 +30,12 @@ const AppDataReducer = (state: AppDataState, action: AppDataAction): AppDataStat
 		case 'SET_WEATHER':
 			newState = { ...newState, weather: action.value }
 			break
+		case 'SET_FORECAST':
+			newState = { ...newState, forecast: action.value }
+			break
+		case 'SET_VIEW':
+			newState = { ...newState, view: action.value }
+			break
 	}
 	return newState
 }
@@ -38,7 +46,9 @@ const AppDataProvider: React.FC = ({ children }) => {
 	const appDataInitState: AppDataState = {
 		location: null,
 		coords: { lat: '51', long: '0' },
-		weather: {}
+		weather: {},
+		forecast: {},
+		view: 'current'
 	}
 
 	const [state, dispatch] = useReducer(AppDataReducer, appDataInitState)

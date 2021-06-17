@@ -4,30 +4,54 @@ import './App.css';
 import { useAppData } from '../providers'
 
 import { useApi, useGeolocation } from '../hooks'
+import { Current, Forecast } from './Views';
 
 const App = () => {
-
-	const [{ location, coords, weather }] = useAppData()
+	const [{ location, coords, weather, view }, appDispatch] = useAppData()
 	const getWeatherData = useApi()
 	const getCoordinates = useGeolocation()
+
+
 
 	useEffect(() => {
 		getCoordinates()
 		//TODO: call in the view when that is set up, change to forecast for that view
 		getWeatherData('weather')
+		// getWeatherData('forecast')
 
 	}, [])
 
+	const getView = () => {
+		switch (view) {
+			case 'current':
+				return <Current />
+			case 'forecast':
+				return <Forecast />
+
+			default:
+				break;
+		}
+	}
+
+	const changeView = () => {
+		appDispatch({
+			type: 'SET_VIEW',
+			value: 'forecast'
+		})
+	}
+
+	if (weather === {}) {
+		return <div>Loading...</div>
+	}
+
+	console.log(weather)
+
 	return (
 		<div className="App">
-			<header className="App-header">
-
-				<p>Location: {location}</p>
-				<p>Coords LAT:  {coords.lat}</p>
-				<p>Coords LONG:  {coords.long}</p>
-				<p>{JSON.stringify(weather.name)}</p>
-				<img src={'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'} alt="weather icon" />
-			</header>
+			<button onClick={() => changeView()}>Current</button>
+			<div className="view-finder">
+				{getView()}
+			</div>
 		</div>
 	);
 }
