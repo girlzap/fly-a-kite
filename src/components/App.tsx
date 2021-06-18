@@ -7,7 +7,7 @@ import { useApi, useGeolocation } from '../hooks'
 import { Current, Forecast } from './Views';
 
 const App = () => {
-	const [{ location, coords, weather, view }, appDispatch] = useAppData()
+	const [{ location, coords, weather, view, forecast }, appDispatch] = useAppData()
 	const getWeatherData = useApi()
 	const getCoordinates = useGeolocation()
 
@@ -15,9 +15,8 @@ const App = () => {
 
 	useEffect(() => {
 		getCoordinates()
-		//TODO: call in the view when that is set up, change to forecast for that view
 		getWeatherData('weather')
-		// getWeatherData('forecast')
+		getWeatherData('forecast')
 
 	}, [])
 
@@ -33,10 +32,10 @@ const App = () => {
 		}
 	}
 
-	const changeView = () => {
+	const changeView = (targetView: string) => {
 		appDispatch({
 			type: 'SET_VIEW',
-			value: 'forecast'
+			value: targetView
 		})
 	}
 
@@ -44,11 +43,11 @@ const App = () => {
 		return <div>Loading...</div>
 	}
 
-	console.log(weather)
 
 	return (
 		<div className="App">
-			<button onClick={() => changeView()}>Current</button>
+			<button onClick={() => changeView('current')}>Current</button>
+			<button onClick={() => changeView('forecast')}>Forecast</button>
 			<div className="view-finder">
 				{getView()}
 			</div>

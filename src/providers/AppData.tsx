@@ -9,6 +9,7 @@ interface AppDataState {
 	weather: any
 	forecast: any
 	view: string
+	offline: boolean
 }
 
 interface AppDataAction {
@@ -48,7 +49,8 @@ const AppDataProvider: React.FC = ({ children }) => {
 		coords: { lat: '51', long: '0' },
 		weather: {},
 		forecast: {},
-		view: 'current'
+		view: 'current',
+		offline: true
 	}
 
 	const [state, dispatch] = useReducer(AppDataReducer, appDataInitState)

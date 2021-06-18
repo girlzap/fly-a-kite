@@ -9,7 +9,7 @@ const Forecast = () => {
 	const getWeatherData = useApi()
 
 	useEffect(() => {
-		getWeatherData('forecast')
+		// getWeatherData('forecast')
 	}, [])
 
 
