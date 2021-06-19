@@ -23,7 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 
-/assets/mockup.ai 
-/assets/mockup-01.png
-/assets/mockup-02.png
-/src/config.json
+.ai 
+.png
+src/config.json
