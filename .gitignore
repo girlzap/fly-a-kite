@@ -23,6 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 
-.ai 
-.png
+*.ai 
+*.png
 src/config.json
