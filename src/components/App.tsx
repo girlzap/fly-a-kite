@@ -22,7 +22,7 @@ const App = () => {
 
 	}, [coords])
 
-	if (weather === {} && forecast === {}) {
+	if (!weather || !forecast) {
 		return <div>Loading...</div>
 	}
 

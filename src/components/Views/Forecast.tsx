@@ -43,7 +43,9 @@ const Forecast = () => {
 
 
 
-
+	if (!forecast) {
+		return <div>Loading...</div>
+	}
 
 	return (
 		<div>

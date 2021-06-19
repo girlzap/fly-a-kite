@@ -47,8 +47,8 @@ const AppDataProvider: React.FC = ({ children }) => {
 	const appDataInitState: AppDataState = {
 		location: null,
 		coords: { lat: '51', long: '0' },
-		weather: {},
-		forecast: {},
+		weather: null,
+		forecast: null,
 		view: 'current',
 		offline: true
 	}
