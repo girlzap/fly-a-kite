@@ -1,0 +1,67 @@
+.Current {
+	height: 100vh;
+	padding: 5%;
+}
+
+.Current>section {
+	height: 30vh;
+}
+
+.last {
+	height: calc(30vh - 30px) !important;
+}
+
+.location {
+	font-size: 2.25em;
+	padding-bottom: 2vh;
+}
+
+.date {
+	font-size: 1.25em;
+	font-weight: 100;
+}
+
+.message {
+	font-size: 3em;
+	font-weight: 700;
+	padding-bottom: 2vh;
+}
+
+.wind-info {
+	font-size: 1.375em;
+	padding-bottom: 10vh;
+}
+
+.temp {
+	font-size: 3.750em;
+	font-weight: 700;
+}
+
+.temp.medium {
+	font-size: 3em;
+	font-weight: 500;
+	margin-left: 14px;
+	/*accounts for the degree symbol*/
+}
+
+.conditions-block {
+	display: flex;
+	justify-content: center;
+}
+
+.conditions {
+	font-size: 1.125em;
+	font-weight: 100;
+	line-height: 40px;
+}
+
+.conditions-block>img {
+	height: 40px;
+	width: auto;
+}
+
+.instruction {
+	position: absolute;
+	bottom: 2vh;
+	width: 90%;
+}

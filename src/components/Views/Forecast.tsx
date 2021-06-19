@@ -1,42 +1,55 @@
 import React, { useEffect } from 'react';
 
 import { useAppData } from '../../providers'
-import { useApi, } from '../../hooks'
+
 import './Forecast.css';
+
+interface ForecastEntry {
+	temp: number
+	conditions: string
+}
+
 const Forecast = () => {
 
-	const [{ location, coords, weather, forecast }] = useAppData()
-	const getWeatherData = useApi()
+	const [{ forecast }] = useAppData()
 
 	useEffect(() => {
+		const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
+		const forecastGrouping: any = {}
 
-		let days = {
-			"Sunday": [],
-			"Monday": [],
-			"Tuesday": [],
-			"Wednesday": [],
-			"Thursday": [],
-			"Friday": [],
-			"Saturday": [],
-		}
+		forecast?.list?.forEach((data: any) => {
+			let newdate = new Date(data.dt_txt)
+			const dayName = (daysOfWeek[newdate.getDay()])
 
-
-		forecast.list.forEach((data: any) => {
-
-			let date = new Date(data.dt)
-			console.log(date.getFullYear())
-
+			if (forecastGrouping[dayName] === undefined) {
+				forecastGrouping[dayName] = []
+			}
 		});
 
-	}, [])
+		forecast?.list?.forEach((data: any) => {
+
+			let newdate = new Date(data.dt_txt)
+			const dayName = (daysOfWeek[newdate.getDay()])
+
+			forecastGrouping[dayName]?.push({
+				temp: data.main.temp,
+				conditions: data.weather[0].main
+			})
+
+		});
+		console.log(forecastGrouping)
+	}, [forecast])
+
+
+
 
 
 	return (
 		<div>
 			Forecast
 
-			{forecast.list.map((data: any) => {
+			{forecast?.list?.map((data: any) => {
 
 				return (
 					<div className="item" key={data.dt}>

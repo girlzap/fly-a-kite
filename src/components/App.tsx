@@ -7,7 +7,7 @@ import { useApi, useGeolocation } from '../hooks'
 import { Current, Forecast } from './Views';
 
 const App = () => {
-	const [{ coords, weather, view }, appDispatch] = useAppData()
+	const [{ coords, weather, forecast }] = useAppData()
 	const getWeatherData = useApi()
 	const getCoordinates = useGeolocation()
 
@@ -22,37 +22,14 @@ const App = () => {
 
 	}, [coords])
 
-	const getView = () => {
-		switch (view) {
-			case 'current':
-				return <Current />
-			case 'forecast':
-				return <Forecast />
-
-			default:
-				break;
-		}
-	}
-
-	const changeView = (targetView: string) => {
-		appDispatch({
-			type: 'SET_VIEW',
-			value: targetView
-		})
-	}
-
-	if (weather === {}) {
+	if (weather === {} && forecast === {}) {
 		return <div>Loading...</div>
 	}
 
-
 	return (
 		<div className="App">
-			<button onClick={() => changeView('current')}>Current</button>
-			<button onClick={() => changeView('forecast')}>Forecast</button>
-			<div className="view-finder">
-				{getView()}
-			</div>
+			<Current />
+			<Forecast />
 		</div>
 	);
 }

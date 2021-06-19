@@ -1,20 +1,36 @@
-import React, { useEffect } from 'react'
-
 import { useAppData } from '../../providers'
+import { useMessage } from '../../hooks';
 
-import { useApi, } from '../../hooks'
+import './Current.css'
 
 const Current = () => {
 	const [{ location, coords, weather }] = useAppData()
-
-
+	const getAdvice = useMessage()
+	const todaysDate = new Date()
+	//TODO: show a better looking date, 'Saturday, June 21, 2020'
 
 	return (
-		<div>
+		<div className="Current">
+			<section>
+				<div className="location">{weather.name}</div>
+				<div className="date">{todaysDate.toDateString()}</div>
+			</section>
 
-			<div>The current temperature for {weather?.name} is {Math.round(weather?.main?.temp)}°F
-			</div>
-			{weather.weather && <img src={'http://openweathermap.org/img/wn/' + weather.weather[0]?.icon + '@2x.png'} alt="weather icon" />}
+			<section>
+				<div className="message">{getAdvice()}</div>
+				<div className="wind-info">{Math.round(weather?.wind?.speed) + 'mph winds, ' + Math.round(weather?.wind?.gust) + 'mph gusts'}</div>
+			</section>
+
+			<section className="last">
+				<div className="temp medium">{Math.round(weather?.main?.temp) + '°'}</div>
+				<div className="conditions-block">
+
+					{weather.weather && <img src={'http://openweathermap.org/img/wn/' + weather.weather[0]?.icon + '@2x.png'} alt="weather icon" />}
+					<div className="conditions">{weather.weather[0].main}</div>
+				</div>
+			</section>
+
+			<div className="instruction">Scroll down for forecast</div>
 
 		</div>
 	);
