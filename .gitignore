@@ -26,4 +26,4 @@ yarn-error.log*
 /assets/mockup.ai 
 /assets/mockup-01.png
 /assets/mockup-02.png
-config.json
+/src/config.json
