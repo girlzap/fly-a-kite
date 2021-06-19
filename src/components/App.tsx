@@ -7,18 +7,20 @@ import { useApi, useGeolocation } from '../hooks'
 import { Current, Forecast } from './Views';
 
 const App = () => {
-	const [{ location, coords, weather, view, forecast }, appDispatch] = useAppData()
+	const [{ coords, weather, view }, appDispatch] = useAppData()
 	const getWeatherData = useApi()
 	const getCoordinates = useGeolocation()
 
-
-
 	useEffect(() => {
 		getCoordinates()
+	}, [])
+
+	useEffect(() => {
+
 		getWeatherData('weather')
 		getWeatherData('forecast')
 
-	}, [])
+	}, [coords])
 
 	const getView = () => {
 		switch (view) {

@@ -1,0 +1,17 @@
+.item {
+	display: flex;
+}
+
+.date,
+.temp {
+	padding: 0 4px;
+}
+
+.temp {
+	font-weight: 700;
+}
+
+img {
+	height: 30px;
+	width: auto;
+}

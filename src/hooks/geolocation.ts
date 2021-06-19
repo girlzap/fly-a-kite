@@ -5,12 +5,12 @@ const useGeolocation = (): Function => {
 
 
 	const getCoordinates = () => {
-
+		console.log('geo')
 		const setPosition = (position: any) => {
 
 			appDispatch({
 				type: 'SET_COORDS',
-				value: { lat: Math.round(position.coords.latitude), long: Math.round(position.coords.longitude) }
+				value: { lat: (position.coords.latitude), long: (position.coords.longitude) }
 			})
 		}
 

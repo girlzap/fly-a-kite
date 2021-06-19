@@ -11,13 +11,10 @@ const Current = () => {
 
 	return (
 		<div>
-			Current
-			<p>Location: {location}</p>
-			<p>Coords LAT:  {coords.lat}</p>
-			<p>Coords LONG:  {coords.long}</p>
-			<p>{JSON.stringify(weather)}</p>
 
-			{/* {weather.weather && <img src={'http://openweathermap.org/img/wn/' + weather.weather[0]?.icon + '@2x.png'} alt="weather icon" />} */}
+			<div>The current temperature for {weather?.name} is {Math.round(weather?.main?.temp)}°F
+			</div>
+			{weather.weather && <img src={'http://openweathermap.org/img/wn/' + weather.weather[0]?.icon + '@2x.png'} alt="weather icon" />}
 
 		</div>
 	);
