@@ -1,17 +1,48 @@
-.item {
+.Forecast {
+	height: calc(100vh - 10%);
+	padding: 5%;
+}
+
+.Forecast>section {
+	height: 30vh;
+}
+
+.forecast-conditions-block {
+	display: flex;
+	justify-content: center;
+}
+
+.forecast-conditions {
+	font-size: 1.25em;
+	line-height: 40px;
+}
+
+.forecast-conditions-block>img {
+	height: 40px;
+	width: auto;
+}
+
+.forecast-temp {
+	display: flex;
+	justify-content: center;
+}
+
+.temp-high,
+.temp-low {
+	font-size: 3.750em;
+	font-weight: 700;
+	padding: 0 20px;
+}
+
+.temp-low {
+	opacity: 0.5;
+}
+
+.forecast-days-block {
 	display: flex;
 }
 
-/* .date,
-.temp {
-	padding: 0 4px;
+.day-block {
+	border-right: 1px solid white;
+	width: 20%;
 }
-
-.temp {
-	font-weight: 700;
-}
-
-img {
-	height: 30px;
-	width: auto;
-} */

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAppData } from '../../providers'
 
@@ -11,8 +11,11 @@ interface ForecastEntry {
 
 const Forecast = () => {
 
-	const [{ forecast }] = useAppData()
+	const [{ forecast, weather }] = useAppData()
+	const todaysDate = new Date()
+	const [forecastData, setForecastData] = useState<any>({})
 
+	//TODO: move the below into a hook?
 	useEffect(() => {
 		const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
@@ -39,28 +42,64 @@ const Forecast = () => {
 
 		});
 		console.log(forecastGrouping)
+		setForecastData(forecastGrouping)
 	}, [forecast])
 
+	const getTemp = (dayData: ForecastEntry[], type: string) => {
+		const temps: Array<number> = []
+		dayData.forEach((entry: any) => {
+			temps.push(Math.round(entry.temp))
+		})
+		const max = temps.reduce(function (a, b) {
+			if (type === 'high') {
+				return Math.max(a, b);
+			}
 
+			return Math.min(a, b);
+
+		});
+
+		return max
+	}
 
 	if (!forecast) {
 		return <div>Loading...</div>
 	}
 
 	return (
-		<div>
-			Forecast
+		<div className="Forecast">
 
-			{forecast?.list?.map((data: any) => {
+			<section>
+				<div className="current-location">{weather.name}</div>
+				<div className="current-date">{todaysDate.toDateString()}</div>
+			</section>
+			<section>
+				{weather?.weather && <div className="forecast-conditions-block">
 
-				return (
-					<div className="item" key={data.dt}>
-						<div className="date">{data.dt_txt}</div>
-						<div className="temp">{Math.round(data.main.temp)}°F</div>
-						<img alt="" src={"http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"} />
-					</div>
-				)
-			})}
+					<img src={'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'} alt="weather icon" />
+					<div className="forecast-conditions">{weather.weather[0].main}</div>
+
+				</div>}
+				<div className="forecast-temp">
+					<div className="temp-high">{Math.round(weather.main.temp_max) + '°'}</div>
+					<div className="temp-low">{Math.round(weather.main.temp_min) + '°'}</div>
+				</div>
+			</section>
+			<section>
+				<div className="forecast-days-block">
+					{Object.keys(forecastData).map((day: any) => (
+						<div className="day-block" key={day}>
+							<div>{day}</div>
+							<div>{getTemp(forecastData[day], 'high')}</div>
+							<div>{getTemp(forecastData[day], 'low')}</div>
+						</div>
+					))}
+
+
+				</div>
+			</section>
+
+
 		</div>
 	);
 };
