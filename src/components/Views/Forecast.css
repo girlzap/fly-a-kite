@@ -1,15 +1,20 @@
 .Forecast {
-	height: calc(100vh - 10%);
-	padding: 5%;
+	height: calc(100vh - 0%);
+	/* padding: 5%; */
 }
 
 .Forecast>section {
 	height: 30vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .forecast-conditions-block {
 	display: flex;
 	justify-content: center;
+
 }
 
 .forecast-conditions {
@@ -40,9 +45,23 @@
 
 .forecast-days-block {
 	display: flex;
+	width: 100%;
 }
 
 .day-block {
-	border-right: 1px solid white;
+	border-right: 1px solid rgba(255, 255, 255, 0.25);
 	width: 20%;
+}
+
+.day-block:last-child {
+	border-right: none;
+}
+
+.forecast-day {
+	font-size: 36px;
+	font-weight: 700;
+}
+
+.forecast-day.low {
+	opacity: 0.5;
 }

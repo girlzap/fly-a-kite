@@ -90,8 +90,8 @@ const Forecast = () => {
 					{Object.keys(forecastData).map((day: any) => (
 						<div className="day-block" key={day}>
 							<div>{day}</div>
-							<div>{getTemp(forecastData[day], 'high')}</div>
-							<div>{getTemp(forecastData[day], 'low')}</div>
+							<div className="forecast-day high">{getTemp(forecastData[day], 'high') + '°'}</div>
+							<div className="forecast-day low">{getTemp(forecastData[day], 'low') + '°'}</div>
 						</div>
 					))}
 

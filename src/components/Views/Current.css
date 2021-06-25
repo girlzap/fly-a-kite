@@ -1,10 +1,14 @@
 .Current {
-	height: calc(100vh - 10%);
-	padding: 5%;
+	height: calc(100vh - 0%);
+	/* padding: 5%; */
 }
 
 .Current>section {
 	height: 30vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .last {
@@ -39,9 +43,15 @@
 	/*accounts for the degree symbol*/
 }
 
-
 .current-instruction {
 	position: absolute;
 	bottom: 2vh;
-	width: 90%;
+	width: 100%;
+}
+
+.scroll-icon {
+	transform: rotate(90deg);
+	font-size: 36px;
+	cursor: pointer;
+	display: inline-block;
 }

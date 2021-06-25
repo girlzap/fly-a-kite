@@ -9,6 +9,14 @@ const Current = () => {
 	const todaysDate = new Date()
 	//TODO: show a better looking date, 'Saturday, June 21, 2020'
 
+	const scrollDown = () => {
+		const appDiv = document?.getElementById('App')
+		appDiv?.scroll({
+			top: appDiv?.offsetHeight,
+			behavior: "smooth"
+		});
+	}
+
 	if (!weather) {
 		return <div>Loading</div>
 	}
@@ -30,7 +38,7 @@ const Current = () => {
 				<div className="current-temp">{Math.round(weather.main.temp) + '°'}</div>
 			</section>
 
-			<div className="current-instruction">Scroll down for forecast</div>
+			<div className="current-instruction" onClick={scrollDown}>Scroll down for forecast <br /><div className="scroll-icon">»</div></div>
 
 		</div>
 	);
