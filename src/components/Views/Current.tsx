@@ -1,25 +1,23 @@
 import { useAppData } from '../../providers'
-import { useMessage } from '../../hooks';
+import { useMessage, useDate } from '../../hooks';
 
 import './Current.css'
 
 const Current = () => {
-	const [{ location, coords, weather }] = useAppData()
+	const [{ weather }] = useAppData()
 	const getAdvice = useMessage()
-	const todaysDate = new Date()
-	//TODO: show a better looking date, 'Saturday, June 21, 2020'
 
 	const { message, gustWarning } = getAdvice()
 
-	const scrollDown = () => {
+	const getTodaysDate = useDate()
+
+	const scrollDown = (): void => {
 		const appDiv = document?.getElementById('App')
 		appDiv?.scroll({
 			top: appDiv?.offsetHeight,
 			behavior: "smooth"
 		});
 	}
-
-
 
 	if (!weather) {
 		return <div>Loading</div>
@@ -30,7 +28,7 @@ const Current = () => {
 
 			<section>
 				<div className="current-location">{weather.name}</div>
-				<div className="current-date">{todaysDate.toDateString()}</div>
+				<div className="current-date">{getTodaysDate()}</div>
 			</section>
 
 			<section>
