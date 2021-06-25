@@ -9,6 +9,8 @@ const Current = () => {
 	const todaysDate = new Date()
 	//TODO: show a better looking date, 'Saturday, June 21, 2020'
 
+	const { message, gustWarning } = getAdvice()
+
 	const scrollDown = () => {
 		const appDiv = document?.getElementById('App')
 		appDiv?.scroll({
@@ -16,6 +18,8 @@ const Current = () => {
 			behavior: "smooth"
 		});
 	}
+
+
 
 	if (!weather) {
 		return <div>Loading</div>
@@ -30,7 +34,9 @@ const Current = () => {
 			</section>
 
 			<section>
-				<div className="current-message">{getAdvice()}</div>
+				<div className="current-message">{message}</div>
+
+				{gustWarning && <div className="gust-warning">{'*Watch out for high gusts up to ' + Math.round(weather.wind.gust) + 'mph'}</div>}
 				<div className="current-wind-info">{Math.round(weather.wind.speed) + 'mph winds, ' + Math.round(weather.wind.gust) + 'mph gusts'}</div>
 			</section>
 

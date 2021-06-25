@@ -7,7 +7,7 @@ const useApi = (): any => {
 
 	const getWeatherData = (type: string): void => {
 		// ['weather', 'forecast']
-		console.log("Fetching API")
+		console.log("Fetching API, offline status: " + offline)
 		let locationIndicator = coords ? 'lat=' + coords.lat + '&lon=' + coords.long : 'zip=' + location
 
 		let apiUrl = 'http://api.openweathermap.org/data/2.5/' + type + '?' + locationIndicator + '&units=imperial&appid=' + configData.apiKey

@@ -1,23 +1,63 @@
+import { useAppData } from '../providers'
+
 const useMessage = (): Function => {
+	const [{ weather }] = useAppData()
 	const getAdvice = () => {
-		//evaluate weather to return a specific message:
+		const { temp } = weather.main
+		const { description } = weather.weather[0]
+		const wind = weather.wind.speed
 
-		// 5-25mph - Fly away!
+		let message = ''
+		let gustWarning = false
 
-		// 10-15mph is Perfect, go fly!
-		// gusts above 25mph, Fly away, but be careful of gusts
+		if (weather.wind.gust > 25) {
+			gustWarning = true
+		}
 
-		// light rain? * be careful of rain
+		// evaluate wind
+		if (wind >= 10 && wind <= 15) {
+			message = 'Perfect, go fly!'
+		}
 
-		// moderate rain? best to stay inside (link to some kite flying videos?
+		if ((wind >= 5 && wind < 10) || (wind > 15 && wind <= 25)) {
+			message = 'Fly away!'
+		}
 
-		// lower then 5mph? Maybe with a glider
-		// higher than 25? best to stay inside
+		if (wind < 5) {
+			message = 'Maybe with a glider...'
+		}
 
-		//below freezing temps? stay inside
-		//between freezing and 65 - stay warm
+		if (wind > 25) {
+			message = 'Too windy today'
+			gustWarning = false
+		}
 
-		return 'Get custom message'
+		//evaluate conditions
+		if (description.includes('drizzle')) {
+			message = 'Bring a rain jacket'
+		}
+
+		if (description.includes('rain')) {
+			message = 'Rain today, maybe tomorrow'
+			gustWarning = false
+		}
+
+		if (description.includes('thunderstorm')) {
+			message = 'Best to stay inside'
+			gustWarning = false
+		}
+
+		//evaluate temp
+		if (temp > 32 && temp <= 65) {
+			message = 'Bring a jacket to stay warm!'
+		}
+
+		if (temp < 32) {
+			message = 'Too chilly, stay warm inside!'
+			gustWarning = false
+		}
+
+		return { message, gustWarning }
 	}
 
 	return getAdvice

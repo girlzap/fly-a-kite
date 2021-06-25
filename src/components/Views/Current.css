@@ -29,11 +29,16 @@
 	font-size: 3em;
 	font-weight: 700;
 	padding-bottom: 2vh;
+	width: 50vw;
+}
+
+.gust-warning {
+	padding-bottom: 10px;
+	font-style: italic;
 }
 
 .current-wind-info {
 	font-size: 1.375em;
-	padding-bottom: 10vh;
 }
 
 .current-temp {
