@@ -76,7 +76,7 @@ const Forecast = () => {
 			<section>
 				{weather?.weather && <div className="forecast-conditions-block">
 
-					<img src={'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'} alt="weather icon" />
+					<img src={'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'} alt="weather icon" />
 					<div className="forecast-conditions">{weather.weather[0].main}</div>
 
 				</div>}

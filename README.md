@@ -85,9 +85,9 @@ Contains actions for:
 
 ## UI Notes
 <a id="ui"> </a>
-There is a toggle at the top of the screen to switch between light, dark, and colorful modes.
+There is a toggle at the top of the screen to switch between light and dark modes.
 
-In 'colorful' the background gradient updates depending on the current temperature. 
+The 'colorful' option will update the background gradient depending on the current temperature. 
 
 
 ------------

@@ -10,7 +10,7 @@ const useApi = (): any => {
 		console.log("Fetching API, offline status: " + offline)
 		let locationIndicator = coords ? 'lat=' + coords.lat + '&lon=' + coords.long : 'zip=' + location
 
-		let apiUrl = 'http://api.openweathermap.org/data/2.5/' + type + '?' + locationIndicator + '&units=imperial&appid=' + configData.apiKey
+		let apiUrl = 'https://api.openweathermap.org/data/2.5/' + type + '?' + locationIndicator + '&units=imperial&appid=' + configData.apiKey
 		if (offline) {
 			if (type === 'weather') {
 				appDispatch({
