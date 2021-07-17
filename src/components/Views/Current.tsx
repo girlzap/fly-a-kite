@@ -35,7 +35,7 @@ const Current = () => {
 				<div className="current-message">{message}</div>
 
 				{gustWarning && <div className="gust-warning">{'*Watch out for high gusts up to ' + Math.round(weather.wind.gust) + 'mph'}</div>}
-				<div className="current-wind-info">{Math.round(weather.wind.speed) + 'mph winds, ' + Math.round(weather.wind.gust) + 'mph gusts'}</div>
+				<div className="current-wind-info">{Math.round(weather.wind.speed) + 'mph winds'}</div>
 			</section>
 
 			<section className="last">

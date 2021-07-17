@@ -50,7 +50,7 @@ const AppDataProvider: React.FC = ({ children }) => {
 		weather: null,
 		forecast: null,
 		view: 'current',
-		offline: true
+		offline: false
 	}
 
 	const [state, dispatch] = useReducer(AppDataReducer, appDataInitState)
