@@ -7,7 +7,6 @@ const useGeolocation = (): Function => {
 	const getCoordinates = () => {
 		console.log('geo')
 		const setPosition = (position: any) => {
-
 			appDispatch({
 				type: 'SET_COORDS',
 				value: { lat: (position.coords.latitude), long: (position.coords.longitude) }
@@ -19,6 +18,8 @@ const useGeolocation = (): Function => {
 
 			if (result.state === 'granted') {
 				navigator.geolocation.getCurrentPosition(setPosition)
+			} else {
+				console.warn("Broswer is blocking location services. Check your settings or use the zip code entry.")
 			}
 		});
 
