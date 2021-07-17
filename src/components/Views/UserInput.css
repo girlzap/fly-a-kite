@@ -1,0 +1,40 @@
+.UserInput {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.input-header {
+	font-size: 3em;
+	margin-bottom: 40px;
+}
+
+.input-message {
+	font-size: 1.25em;
+}
+
+.input-container>input {
+	border-radius: 4px 0 0 4px;
+}
+
+.input-container>button {
+	border-radius: 0 4px 4px 0;
+	padding: 10px;
+}
+
+
+
+/* Light UI */
+
+.App.light>.UserInput>.input-container>input {
+	background-color: #afd3ec;
+	color: #16222A;
+}
+
+.App.light>.UserInput>button,
+.App.light>.UserInput>.input-container>button {
+	background-color: #8fb4cf;
+	color: #16222A;
+}

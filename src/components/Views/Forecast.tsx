@@ -41,7 +41,7 @@ const Forecast = () => {
 			})
 
 		});
-		console.log(forecastGrouping)
+
 		setForecastData(forecastGrouping)
 	}, [forecast])
 

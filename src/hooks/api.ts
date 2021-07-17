@@ -28,8 +28,6 @@ const useApi = (): any => {
 				.then((response) => {
 					return response.json()
 						.then((data) => {
-							console.log(data)
-							// return data
 							if (type === 'weather') {
 								appDispatch({
 									type: 'SET_WEATHER',
